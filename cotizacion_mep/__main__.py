@@ -22,7 +22,7 @@ def get_cotizacion_mep():
 
 def main():
     """The actual entry point."""
-    app.run()
+    app.run(host='0.0.0.0')
 
 if __name__ == '__main__':
     mep_calculator = mep_calc.MEP_Calculator(sys.argv[1], sys.argv[2])

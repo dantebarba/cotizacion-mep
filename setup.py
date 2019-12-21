@@ -9,6 +9,7 @@ setup(name='cotizacion_mep',
       author='dantebarba',
       description='cotizaciones del dolar MEP de Argentina',
       long_description=long_description,
+      install_requires=["flask==1.1.1", "requests"],
       packages=find_packages(exclude=('tests',)),
       entry_points={
           'console_scripts': [
