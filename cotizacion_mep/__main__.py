@@ -10,7 +10,7 @@ app = Flask(__name__)
 mep_calculator = None
 
 
-@app.route("/mep")
+@app.route("/api/v1/mepvalue")
 def get_cotizacion_mep():
     ''' Obtiene la mejor cotizacion del dolar MEP '''
     response = app.response_class(
