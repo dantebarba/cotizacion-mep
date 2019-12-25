@@ -22,7 +22,7 @@ class IOL_MEP_Api():
         return auth.Authentication(response["access_token"], response["refresh_token"], response[".expires"])
 
     def authenticate(self): 
-        if (self._authentication is None or self._authentication.expired()):
+        if (self._authentication is None or self._authentication.is_expired()):
             self._authentication = self._do_auth()
         return self._authentication
 
@@ -41,9 +41,6 @@ class IOL_MEP_Api():
             response = response.json()
             bonds.append(bond.Bond(bond_name, response["ultimoPrecio"], self._currency(response["moneda"]), response["fechaHora"]))
         return bonds
-
-    def is_auth_expired(self):
-        self._authentication.is_expired()
 
 
 class MEP_Api():

@@ -12,10 +12,6 @@ class Authentication():
     
     def expires_in(self):
         return self._expiration
-
-    def expired(self):
-        ''' mocked '''
-        return False
     
     def token(self):
         return self._bearer
