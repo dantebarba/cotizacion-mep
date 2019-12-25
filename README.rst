@@ -1,4 +1,5 @@
-cotizacion_mep
+cotizacion_mep .. image:: https://travis-ci.com/dantebarba/cotizacion-mep.svg?branch=master
+    :target: https://travis-ci.com/dantebarba/cotizacion-mep
 ==============
 
 cotizaciones del dolar MEP de Argentina
