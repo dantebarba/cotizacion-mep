@@ -42,6 +42,9 @@ class IOL_MEP_Api():
             bonds.append(bond.Bond(bond_name, response["ultimoPrecio"], self._currency(response["moneda"]), response["fechaHora"]))
         return bonds
 
+    def is_auth_expired(self):
+        self._authentication.is_expired()
+
 
 class MEP_Api():
 

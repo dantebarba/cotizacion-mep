@@ -9,6 +9,8 @@ ENV username=""
 ENV password=""
 ENV bonds='["AY24","DICA","AO20","AF20","A2E2"]'
 
+RUN ["python", "-m", "unittest", "discover", "tests"]
+
 EXPOSE 5000
 
 CMD ["sh", "-c", "python -m cotizacion_mep $username $password $bonds"]
