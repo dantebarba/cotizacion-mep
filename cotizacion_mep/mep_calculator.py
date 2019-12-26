@@ -1,17 +1,17 @@
 import mep_api as api
+import cotizacion_mep.mongodb_mep_strategy as mongodb_mep_strategy
 
-
-class MEP_Calculator():
-    def __init__(self, username, password):
-        self._api = api.MEP_Api({"username": username, "password": password})
+class MEPCalculator():
+    def __init__(self, strategy):
+        self._api = api.MEPApi(strategy)
 
     def calculate(self, bonds_list):
         mep_value_pairs = []
         for bond in bonds_list:
             mep_value_pairs.append(self._api.get_bonds_pair(bond, bond+"D"))
-        return MEP_Calculator.lowest_rate(mep_value_pairs)
+        return MEPCalculator.lowest_rate(mep_value_pairs)
 
     @staticmethod
     def lowest_rate(mep_value_pairs):
-        mep_value_pairs.sort(cmp=lambda a, b: a.mep_value() - b.mep_value())
+        mep_value_pairs.sort(cmp=lambda a, b: int(a.mep_value()*1000 - b.mep_value()*1000))
         return mep_value_pairs[0]

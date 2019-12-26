@@ -19,8 +19,11 @@ class MepValue():
     def last_update(self):
         return self._last_update
 
+    def last_bond_update(self):
+        return self._bond_ars.last_update
+
     def to_json(self):
         return json.dumps({"mep_value": self.mep_value(),
                 "bond_usd": self.bond_usd().to_json(),
                 "bond_ars": self.bond_ars().to_json(),
-                "last_update": self.last_update().isoformat()})
+                "last_update": self.last_bond_update()})
