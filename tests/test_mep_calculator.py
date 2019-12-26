@@ -17,7 +17,7 @@ class MepCalculatorTestSuite(unittest.TestCase):
         mep1 = mep.MepValue(ay24d,ay24, "last_update")
         mep2 = mep.MepValue(ao20d, ao20, "Last update")
         mep3 = mep.MepValue(ac17d, ac17, "Last update")
-        mep_calculator = calculator.MEP_Calculator.lowest_rate([mep2, mep1, mep3])
+        mep_calculator = calculator.MEPCalculator.lowest_rate([mep2, mep1, mep3])
         self.assertEqual(mep_calculator.mep_value(), 40, "Mep value incorrecto: "+str(mep_calculator.mep_value()))
 
 if __name__ == '__main__':
