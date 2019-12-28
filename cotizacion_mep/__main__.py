@@ -37,7 +37,7 @@ def main():
     # api = mep_api.MEPApi(scheduler.SchedulerStrategy(
     # {"username": sys.argv[1], "password": sys.argv[2]}, bonds=get_bonds_from_cmd()))
     api = mep_api.MEPApi(iol_mep_strategy.IolMEPStrategy(
-        {"username": sys.argv[1], "password": sys.argv[2]}, bonds=get_bonds_from_cmd()))
+        {"username": sys.argv[1], "password": sys.argv[2]}))
     app.run(host='0.0.0.0')
 
 
