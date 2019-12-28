@@ -20,7 +20,7 @@ def get_cotizacion_mep():
     frm = int(request.args.get('from')) if request.args.get('from') else 0
     to = int(request.args.get('to')) if request.args.get('to') else 100
     response = app.response_class(
-        response=json.dumps(api.calculate(get_bonds_from_cmd())[frm:to]),
+        response=json.dumps([element.to_json() for element in api.calculate(get_bonds_from_cmd())[frm:to]]),
         status=200,
         mimetype='application/json'
     )
