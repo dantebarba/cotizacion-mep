@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import jsonify
 import mep_api as api
 import sys
 import json
@@ -19,11 +20,7 @@ def get_cotizacion_mep():
     frm = int(request.args.get('from')) if request.args.get('from') else 0
     to = int(request.args.get('to')) if request.args.get('to') else 100
 
-    response = app.response_class(
-        response=api.calculate(get_bonds_from_cmd())[frm:to].to_json(),
-        status=200,
-        mimetype='application/json'
-    )
+    response = jsonify([element.to_json() for element in api.calculate(get_bonds_from_cmd())[frm:to]])
     return response
 
 
@@ -36,10 +33,10 @@ def main():
     # start scheduling for mep value recovery.
     # api = mep_api.MEPApi(scheduler.SchedulerStrategy(
     # {"username": sys.argv[1], "password": sys.argv[2]}, bonds=get_bonds_from_cmd()))
-    api = mep_api.MEPApi(iol_mep_strategy.IolMEPStrategy(
-        {"username": sys.argv[1], "password": sys.argv[2]}))
     app.run(host='0.0.0.0')
 
 
 if __name__ == '__main__':
+    api = mep_api.MEPApi(iol_mep_strategy.IolMEPStrategy(
+        {"username": sys.argv[1], "password": sys.argv[2]}))
     main()
