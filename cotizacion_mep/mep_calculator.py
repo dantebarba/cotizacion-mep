@@ -1,4 +1,3 @@
-import mep_api as api
 import cotizacion_mep.mongodb_mep_strategy as mongodb_mep_strategy
 
 class MEPCalculator():
