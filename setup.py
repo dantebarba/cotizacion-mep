@@ -5,7 +5,7 @@ with open('README.rst', 'r') as fh:
     long_description = fh.read()
 
 setup(name='cotizacion_mep',
-      version='0.2.0',
+      version='0.3.0',
       author='dantebarba',
       description='cotizaciones del dolar MEP de Argentina',
       long_description=long_description,

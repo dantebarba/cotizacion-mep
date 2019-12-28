@@ -14,7 +14,7 @@ class MepValue():
         return self._bond_ars
 
     def mep_value(self):
-        return self.bond_ars().price / self.bond_usd().price
+        return round(self.bond_ars().price / self.bond_usd().price, 3)
 
     def last_update(self):
         return self._last_update
