@@ -7,7 +7,7 @@ RUN ["python", "setup.py", "install"]
 
 ENV username=""
 ENV password=""
-ENV bonds='["AY24","DICA","AO20","AF20","A2E2","PARY","CO26","DICY","A2E8","AA25","AA37","AC17"]'
+ENV bonds='["AY24","DICA","AO20","AF20","A2E7","PARY","CO26","DICY","A2E8","AA25","AA37","AC17"]'
 
 RUN ["python", "-m", "unittest", "discover", "tests"]
 
