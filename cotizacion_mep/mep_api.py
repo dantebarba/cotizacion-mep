@@ -20,5 +20,5 @@ class MEPApi():
     def get_bonds_pair(self, ars_bond, usd_bond):
         return mep_value.MepValue(self._strategy.get_bonds([usd_bond])[0], self._strategy.get_bonds([ars_bond])[0], datetime.datetime.now())
 
-    def calculate(self, bonds_list=[]):
-        return self._calculator.calculate(bonds_list)
+    def calculate(self, bonds_list=[], min_volume_ars=1, min_operations_ars=1, min_volume_usd=1, min_operations_usd=1):
+        return self._calculator.calculate(bonds_list, min_volume_ars, min_operations_ars, min_volume_usd, min_operations_usd)

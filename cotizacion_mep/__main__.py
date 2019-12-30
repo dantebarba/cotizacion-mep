@@ -19,12 +19,22 @@ def get_cotizacion_mep():
     ''' Obtiene la mejor cotizacion del dolar MEP '''
     frm = int(request.args.get('from')) if request.args.get('from') else 0
     to = int(request.args.get('to')) if request.args.get('to') else 100
-    response = app.response_class(
-        response=json.dumps([element.to_json() for element in api.calculate(get_bonds_from_cmd())[frm:to]]),
-        status=200,
-        mimetype='application/json'
-    )
-    # response = jsonify([element.to_json() for element in api.calculate(get_bonds_from_cmd())[frm:to]])
+    volume_ars = int(request.args.get('volume_ars')) if request.args.get(
+        'volume_ars') else 100000
+    volume_usd = int(request.args.get('volume_usd')) if request.args.get(
+        'volume_usd') else 10000
+    operations_ars = int(request.args.get('ops_ars')
+                         ) if request.args.get('ops_ars') else 10
+    operations_usd = int(request.args.get('ops_usd')
+                         ) if request.args.get('ops_usd') else 30
+    json_list = [element.to_json() for element in api.calculate(
+        get_bonds_from_cmd(), min_volume_ars=volume_ars, min_operations_ars=operations_ars, min_volume_usd=volume_usd, min_operations_usd=operations_usd)[frm:to]]
+    # response = app.response_class(
+    #     response=json.dumps(json_list),
+    #     status=200,
+    #     mimetype='application/json'
+    # )
+    response = jsonify(json_list)
     return response
 
 
