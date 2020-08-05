@@ -2,8 +2,10 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import json
+from flask import abort
 import mep_api as api
 import sys
+import os
 import cotizacion_mep.api_scheduler as scheduler
 import cotizacion_mep.mep_api as mep_api
 import cotizacion_mep.iol_mep_strategy as iol_mep_strategy
@@ -17,6 +19,7 @@ api = None
 @app.route("/api/v1/mepvalue")
 def get_cotizacion_mep():
     ''' Obtiene la mejor cotizacion del dolar MEP '''
+    # auth(request.headers.get('X-Auth-Pass'))
     frm = int(request.args.get('from')) if request.args.get('from') else 0
     to = int(request.args.get('to')) if request.args.get('to') else 100
     volume_ars = int(request.args.get('volume_ars')) if request.args.get(
@@ -37,6 +40,9 @@ def get_cotizacion_mep():
     response = jsonify(json_list)
     return response
 
+def auth(password=''):
+    if not password == os.environ['API_PASSWORD']:
+        abort(401)
 
 def get_bonds_from_cmd():
     return ast.literal_eval(sys.argv[3])
