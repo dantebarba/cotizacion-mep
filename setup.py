@@ -1,11 +1,12 @@
 """This is the installation toolset for this project."""
 from setuptools import setup, find_packages
+import os
 
 with open('README.rst', 'r') as fh:
     long_description = fh.read()
 
 setup(name='cotizacion_mep',
-      version='0.5.0',
+      version=os.environ["BUILD_VERSION"],
       author='dantebarba',
       description='cotizaciones del dolar MEP de Argentina',
       long_description=long_description,
