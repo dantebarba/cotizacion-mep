@@ -1,7 +1,22 @@
 services:
   - docker
-  
-script:
-- docker build -t dantebarba/cotizacion-mep-api:latest .
-- docker login --username=$DOCKER_USER --password=$DOCKER_PASSWORD
-- docker push dantebarba/cotizacion-mep-api:latest
+
+stages:
+  - push-latest
+  - push-tag
+
+jobs:
+  include:
+    - stage: push-latest
+      install: skip
+      script:
+      - docker login --username=$DOCKER_USER --password=$DOCKER_PASSWORD
+      - docker build -t dantebarba/cotizacion-mep-api:latest .
+      - docker push dantebarba/cotizacion-mep-api:latest
+
+    - stage: push-tag
+      if: tag IS present
+      script:
+      - docker login --username=$DOCKER_USER --password=$DOCKER_PASSWORD
+      - docker build -t dantebarba/cotizacion-mep-api:$TRAVIS_TAG .
+      - docker push dantebarba/cotizacion-mep-api:$TRAVIS_TAG
