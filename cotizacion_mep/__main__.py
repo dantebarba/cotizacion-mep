@@ -16,10 +16,10 @@ app = Flask(__name__)
 api = None
 
 
-@app.route("/api/v1/mepvalue")
+@app.route("/api/v2/mepvalue")
 def get_cotizacion_mep():
     ''' Obtiene la mejor cotizacion del dolar MEP '''
-    # auth(request.headers.get('X-Auth-Pass'))
+    auth(request.headers.get('X-Auth-Pass'))
     frm = int(request.args.get('from')) if request.args.get('from') else 0
     to = int(request.args.get('to')) if request.args.get('to') else 100
     volume_ars = int(request.args.get('volume_ars')) if request.args.get(
